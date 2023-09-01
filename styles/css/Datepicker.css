@@ -1,0 +1,59 @@
+.datepicker {
+  width: 100%;
+  height: 400px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+.datepicker__header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+.datepicker__title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+.datepicker__btn {
+  font-size: 16px;
+  transform: translateY(2px);
+}
+.datepicker__btn._blocked {
+  color: rgb(214, 214, 214);
+  pointer-events: none;
+}
+.datepicker__days {
+  height: 48px;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  margin-bottom: 5px;
+}
+.datepicker__day {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(226, 226, 226);
+}
+.datepicker__body {
+  flex: 1 1 auto;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(7, 1fr);
+}
+.datepicker__item {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.datepicker__item._blocked {
+  color: rgb(197, 197, 197);
+  pointer-events: none;
+}
+.datepicker__item._this-day {
+  background-color: rgb(204, 220, 252);
+}/*# sourceMappingURL=DatePicker.css.map */
