@@ -44,6 +44,8 @@ const DatePicker = () => {
 
     let date = new Date(thisYear, thisMonth)
 
+    console.log('date = ', date, 'newdate = ', new Date());
+
     let thisMonthDays = []
     function thisMonthDaysCreator() {
         // --------------thisMonthDays

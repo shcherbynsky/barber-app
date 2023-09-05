@@ -1,3 +1,10 @@
+.information {
+  padding: 20px 15px;
+}
+.information__content {
+  color: #ababab;
+}
+
 .slider {
   margin-bottom: 20px;
 }

@@ -1,0 +1,28 @@
+.contacts {
+    padding: 20px 15px;
+
+    &__map {
+        width: 100%;
+        margin-bottom: 20px;
+
+        & iframe {
+            width: 100%;
+            height: 300px;
+        }
+    }
+
+    &__item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        &:not(:last-child) {
+            margin-bottom: 10px;
+        }
+
+        &-title {
+            max-width: 100px;
+            flex-grow: 1;
+        }
+    }
+}

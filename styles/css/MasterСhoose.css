@@ -1,7 +1,7 @@
 .masters {
+  padding: 20px 15px;
   position: absolute;
   z-index: 20;
-  left: -110%;
   top: 0;
   width: 100%;
   height: 100%;
@@ -10,12 +10,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 40px;
-  padding-top: 50px;
-  transition: 0.3s;
-}
-.masters._active {
-  left: 0;
+  gap: 20px;
+  padding-top: 35px;
 }
 .masters__title {
   display: flex;
@@ -32,18 +28,23 @@
 .masters__item {
   text-align: center;
   align-self: stretch;
-  border: 1px solid #a0a0a0;
+  border: 1px solid #cacaca;
+  border-radius: 20px;
   padding-right: 20px;
+  overflow: hidden;
   display: flex;
   align-items: center;
   gap: 20px;
+  transition: 0.3s;
 }
-.masters__back-btn {
-  position: absolute;
-  left: 15px;
-  top: 20px;
-  color: inherit;
-  font-size: 14px;
+.masters__item._active {
+  color: #fff;
+  background-color: #cacaca;
+  transform: scale(1.1);
+}
+.masters__next-btn {
+  margin-left: auto;
+  margin-right: 15px;
 }
 
 .master__img {

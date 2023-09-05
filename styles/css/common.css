@@ -2,10 +2,14 @@
   background-color: #fff;
   max-width: 798px;
   margin: 0 auto;
-  padding: 0 15px;
+}
+
+body {
+  overflow-x: hidden;
 }
 
 .App {
+  color: #7c7c7c;
   background-color: rgb(189, 189, 189);
   display: flex;
 }
@@ -23,19 +27,24 @@
 
 .main {
   position: relative;
+  z-index: 10;
   background-color: #fff;
   flex: 1 1 auto;
-  padding: 15px;
   overflow-y: scroll;
 }
 
 .back-btn {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 5px;
+  color: inherit;
+  font-size: 12px;
+  position: absolute;
+  left: 10px;
+  top: 10px;
 }
 .back-btn span {
-  font-size: 10px;
+  font-size: 8px;
   transform: translateY(2px);
 }
 
@@ -51,7 +60,61 @@
 }
 
 .btn {
-  padding: 10px;
+  padding: 10px 40px;
   color: #fff;
   background-color: #cacaca;
+  border-radius: 20px;
+  transition: 0.3s;
+  margin-left: auto;
+}
+.btn._blocked {
+  background-color: #ebebeb;
+  pointer-events: none;
+}
+
+.animated {
+  opacity: 0;
+  -webkit-animation: ani 0.7s forwards;
+          animation: ani 0.7s forwards;
+}
+
+@-webkit-keyframes ani {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes ani {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.animated-shift {
+  transform: translateX(-150%);
+  -webkit-animation: ani-shift 0.7s forwards;
+          animation: ani-shift 0.7s forwards;
+}
+
+@-webkit-keyframes ani-shift {
+  0% {
+    transform: translateX(-150%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes ani-shift {
+  0% {
+    transform: translateX(-150%);
+  }
+  100% {
+    transform: translateX(0);
+  }
 }/*# sourceMappingURL=common.css.map */

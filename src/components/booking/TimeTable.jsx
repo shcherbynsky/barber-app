@@ -1,14 +1,17 @@
 import React from "react"
-import { TfiAngleLeft } from "react-icons/tfi";
+import { TfiAngleLeft, TfiAngleRight } from "react-icons/tfi";
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { setHeaderValue } from "../../redux/headerSlice"
-import { fetchBookedDate, fetchData, setChosenTime } from "../../redux/scheduleSlice"
+import { fetchBookedDate, fetchData, setChosenMaster, setChosenTime } from "../../redux/scheduleSlice"
 import DatePicker from "./DatePicker"
 
 
 const TimeTable = () => {
 
+
+    const [pickedTime, setPickedTime] = React.useState({hours:-1, minutes:-1})
+    const [activeTimeItem, setActiveTimeItem] = React.useState(-1)
     const dispatch = useDispatch()
     const { startHours, startMinutes, endHours, endMinutes, chosenMaster, chosenDate, busyHours, services, chosenService } = useSelector(state => state.schedule)
 
@@ -110,25 +113,36 @@ const TimeTable = () => {
     }
 
 
-    const onTimeClick = (hours, minutes) => {
-        const hoursItem = hours < 10 ? '0' + hours : hours
-        const minutesItem = minutes < 10 ? '0' + minutes : minutes
+    const onTimeClick = (hours, minutes, index) => {
+
+        setPickedTime({hours, minutes})
+        setActiveTimeItem(index)
+        
+    }
+
+    const onClickNextBtn = () => {
+        const hoursItem = pickedTime.hours < 10 ? '0' + pickedTime.hours : pickedTime.hours
+        const minutesItem = pickedTime.minutes < 10 ? '0' + pickedTime.minutes : pickedTime.minutes
         dispatch(setChosenTime({ hoursItem, minutesItem }))
+    }
+    const onBackClick = () => {
+        dispatch(setChosenMaster(-1))
     }
 
     const timeElements = timeTable.map((item, index) => {
         const findItem = busyHoursArray.find(el => el.hours === item.hours && el.minutes === item.minutes) || notAvailableHoursArray.find(el => el.hours === item.hours && el.minutes === item.minutes)
         return (
-            <Link to='/booking/confirm'
-                onClick={() => onTimeClick(item.hours, item.minutes)}
+            <div
+                onClick={() => onTimeClick(item.hours, item.minutes, index)}
                 key={index}
-                className={findItem ? "timetable__item _blocked" : "timetable__item"}> {item.hours + ' : ' + (item.minutes === 0 ? item.minutes + '0' : item.minutes)} </Link>
+                className={"timetable__item" + (findItem ? " _blocked" : "") + (activeTimeItem === index ? " _active" : "")}> {item.hours + ' : ' + (item.minutes === 0 ? item.minutes + '0' : item.minutes)}
+            </div>
         )
     })
 
 
     return (
-        <div className="timetable">
+        <div className="timetable animated-shift">
             <div className="timetable__body">
                 {
                     timeElements.length ?
@@ -142,9 +156,9 @@ const TimeTable = () => {
                         : <div className="timetable__error">Вибачте, на цей день запису немає <span>😢</span></div>
                 }
 
-
+                <button onClick={onClickNextBtn} className={"timetable__next-btn btn " + (pickedTime.hours < 0 ? "_blocked" : "")} >Далі <span><TfiAngleRight /></span></button>
             </div>
-            <Link to="/booking/master" className="masters__back-btn back-btn"> <span><TfiAngleLeft /></span>повернутись</Link>
+            <button onClick={() => onBackClick()} className="masters__back-btn back-btn"> <span><TfiAngleLeft /></span>повернутись</button>
         </div>
     )
 }

@@ -6,29 +6,25 @@ import Slider from "./Slider"
 const Information = () => {
 
     return (
-        <div className="information">
+        <div className="information animated">
             <div className="information__slider slider swiper">
 
                 <Slider />
-                {/* <swiper-container className="slider__wrapper swiper-container">
-                    <swiper-slide className="slider__slide swiper-slide">
-                        <img src="img/slider/1.jpg" alt="" />
-                    </swiper-slide>
-                    <swiper-slide className="slider__slide swiper-slide">
-                        <img src="img/slider/2.jpg" alt="" />
-                    </swiper-slide>
-                    <swiper-slide className="slider__slide swiper-slide">
-                        <img src="img/slider/3.jpg" alt="" />
-                    </swiper-slide>
-                    <swiper-slide className="slider__slide swiper-slide">
-                        <img src="img/slider/4.jpg" alt="" />
-                    </swiper-slide>
-                </swiper-container> */}
+               
             </div>
             <div className="information__content">
-                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sed sunt quo accusantium et nisi, laborum ducimus explicabo voluptatum, unde nam nihil eum assumenda laudantium expedita odio consectetur, quisquam ipsum itaque?
-                Aliquam aut, ut maiores ullam ipsam minima natus facilis facere consequuntur ratione! Nesciunt nemo molestiae minima repellat provident vitae similique, laborum quasi, nulla a tempora, officiis laudantium. Natus, pariatur beatae?
-                Iste ducimus sequi sunt quasi vero possimus ipsam optio architecto quisquam? Mollitia at totam fugit similique nulla fuga quia, in quidem placeat doloribus reprehenderit blanditiis. Dicta cupiditate eum magni est.</p>
+                <p> Ми поєднали у собі старовинні традиції з технологіями, кінематографічне освітлення 
+                    для якісної геометрії у стрижках, класичні техніки з мистецтвом скульптури чоловічої стрижки, 
+                    тільки так можна розкрити та створити індивідуальний, впевнений образ.
+                    <br />
+                    Наша перукарня - перша, хто насмілилася порушити всі стереотипи, ми симбіоз Барберов, скульпторів і 
+                    класиків, які прагнуть досконалості. Щотижня проводимо зустрічі та майстер-класи у Києві та Україні, 
+                    ділимося секретами та тонкощами правильного гоління в домашніх умовах небезпечною бритвою, ритуалами 
+                    королівського гоління. Практичні поради про догляд за бородою та вусами, та правильне укладання волосся, 
+                    підбір правильної стрижки за формою обличчя. Ми хочемо допомогти справжнім чоловікам бути ще більш 
+                    незалежними та впевненими в собі. Frisor Барбершоп - чоловічий клуб у якому ви не тільки станете кращими, 
+                    але й будете озброєні досвідом наших предків.
+                </p>
             </div>
         </div>
     )

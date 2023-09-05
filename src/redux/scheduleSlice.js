@@ -58,8 +58,8 @@ const initialState = {
   // chosenDay: 0,
   chosenDate: '',
   chosenTime: {
-    hours:0,
-    minutes:0,
+    hours:-1,
+    minutes:-1,
   },
   // isServiceChosen: true,
   chosenService: -1,

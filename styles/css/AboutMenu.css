@@ -12,6 +12,8 @@
   align-items: center;
   justify-content: space-around;
   border: 1px solid #000;
+  border-radius: 20px;
+  overflow: hidden;
 }
 .about-menu__item {
   flex: 1 1 33.333%;

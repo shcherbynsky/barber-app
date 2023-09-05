@@ -1,21 +1,27 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from "@reduxjs/toolkit";
+import { getDataFromStorage } from "../utils/getDataFromStorage";
 
 const initialState = {
-  activeFooterMenu: 2
-}
-
+  activeFooterMenu: getDataFromStorage('activeFooterMenu'),
+  // menuItems: [
+  //   { logo: "<TfiCalendar />", title: "Запис", link: "/booking" },
+  //   { logo: "<TfiUser />", title: "Профіль", link: "/profile" },
+  //   { logo: "<TfiInfoAlt />", title: "Про нас", link: "/about" },
+  //   { logo: "<TfiBook />", title: "Мої записи", link: "/mybooking" },
+  //   { logo: "<TfiLocationPin />", title: "Контакти", link: "/contacts" },
+  // ],
+};
 export const footerMenuSlice = createSlice({
-  name: 'footerMenu',
+  name: "footerMenu",
   initialState,
   reducers: {
     setActiveFooterMenu: (state, action) => {
-      state.activeFooterMenu = action.payload
+      state.activeFooterMenu = action.payload;
     },
-    
   },
-})
+});
 
 // Action creators are generated for each case reducer function
-export const { setActiveFooterMenu } = footerMenuSlice.actions
+export const { setActiveFooterMenu } = footerMenuSlice.actions;
 
-export default footerMenuSlice.reducer
+export default footerMenuSlice.reducer;

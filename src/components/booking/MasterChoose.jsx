@@ -1,15 +1,15 @@
 import React from "react"
-import { TfiAngleLeft } from "react-icons/tfi";
+import { TfiAngleLeft, TfiAngleRight } from "react-icons/tfi";
 import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { fetchMaster, setChosenMaster } from "../../redux/scheduleSlice"
+import { fetchMaster, setChosenMaster, setChosenService } from "../../redux/scheduleSlice"
 
 
 
 const MasterChoose = () => {
 
      
-
+    const [pickedMaster, setPickedMaster] = React.useState(-1)
     const [isShown, setIsShown] = React.useState(false)
 
     const { masters } = useSelector(state => state.schedule)
@@ -30,18 +30,26 @@ const MasterChoose = () => {
     }, [])
 
     const onMasterClick = (masterId) => {
-        dispatch(setChosenMaster(masterId)) 
+        setPickedMaster(masterId)
+         
+    }
+
+    const onClickNextBtn = () => {
+        dispatch(setChosenMaster(pickedMaster))
+    }
+    const onBackClick = () => {
+        dispatch(setChosenService(-1))
     }
     
     const mastersElements = masters.length > 0 ? masters.map((master, index) => {
 
         return (
-            <Link to="/booking/timetable" onClick={() => onMasterClick(index)} key={index} className="masters__item master">
+            <div onClick={() => onMasterClick(index)} key={index} className={"masters__item master" + (pickedMaster === index ? " _active" : "")}>
                 <div className="master__img">
                     <img src={'http://localhost:5000/' + master.imgUrl} alt="" />
                 </div>
                 <div className="master__name">{master.name}</div>
-            </Link>
+            </div>
         )
 
 
@@ -52,12 +60,13 @@ const MasterChoose = () => {
 
     return (
 
-        <div className={isShown ? "masters _active" : "masters"}>
+        <div className={"masters animated-shift"}>
             <div className="masters__title">Будть ласка, оберить майстера</div>
             <div className="masters__items">
                 {mastersElements}
             </div>
-            <Link to="/booking/service"  className="masters__back-btn back-btn"> <span><TfiAngleLeft /></span>повернутись</Link>
+            <button onClick={onBackClick}  className="masters__back-btn back-btn"> <span><TfiAngleLeft /></span>повернутись</button>
+            <button onClick={onClickNextBtn} className={"masters__next-btn btn " + (pickedMaster < 0 ? "_blocked" : "")} >Далі <span><TfiAngleRight /></span></button>
         </div>
 
     )
