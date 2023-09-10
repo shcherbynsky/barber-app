@@ -4,7 +4,7 @@ import Header from "./components/Header";
 import About from "./components/about/About";
 import FooterMenu from "./components/FooterMenu";
 
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, HashRouter } from "react-router-dom";
 import { useSelector } from "react-redux";
 import UserPart from "./components/UserPart";
 import AdminPart from "./components/AdminPart/AdminPart";
