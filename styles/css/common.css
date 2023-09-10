@@ -15,7 +15,11 @@ body {
 }
 
 .wrapper {
-  height: 100vh;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
   max-width: 768px;
   flex: 1 1 auto;
   background-color: #fff;

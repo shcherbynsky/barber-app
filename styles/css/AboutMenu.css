@@ -23,6 +23,7 @@
   border-right: 1px solid #000;
 }
 .about-menu__btn {
+  color: #000;
   width: 100%;
   padding: 3px 0;
   transition: 0.3s;
