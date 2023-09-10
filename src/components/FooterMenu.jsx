@@ -12,9 +12,7 @@ const FooterMenu = () => {
     
     const dispatch = useDispatch()
     let {activeFooterMenu} = useSelector(state => state.footerMenu)
-
    const isMounted = React.useRef(false)
-    
     const menuItems = [{ logo: <TfiCalendar />, title: 'Запис', link:'/booking' }, { logo: <TfiUser />, title: 'Профіль', link:'/profile' }, { logo: <TfiInfoAlt />, title: 'Про нас', link:'/about' }, { logo: <TfiBook />, title: 'Мої записи', link:'/mybooking' }, { logo: <TfiLocationPin />, title: 'Контакти', link:'/contacts' }]
     
     React.useEffect(() => {

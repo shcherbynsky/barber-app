@@ -46,17 +46,15 @@ const ServiceChoose = () => {
     }
 
     return (
-        <>
+        serviceElements.length === 0 ? <div className="loading"><img src="/img/preLoader.svg" /></div> :
         <div className={"servicechoose animated-shift"}>
             <div className="servicechoose__title">Будть ласка, оберить послугу: <span></span></div>
             <div className="servicechoose__items">
-                {serviceElements.length === 0 ? <div className="loading"><img src="/img/preLoader.svg" /></div> : serviceElements}
+                {serviceElements}
             </div>
             <button onClick={onBackClick} className="servicechoose__back-btn back-btn"> <span><TfiAngleLeft /></span>повернутись</button>
             <button onClick={onClickNextBtn} className={"servicechoose__next-btn btn " + (pickedService < 0 ? "_blocked" : "")} >Далі <span><TfiAngleRight /></span></button>
         </div>
-        </>
-
     )
     // return (
     //     <>

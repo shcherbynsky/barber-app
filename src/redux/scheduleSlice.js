@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import { BASE_URL } from './api'
 import axios from 'axios'
 
 
@@ -6,7 +7,7 @@ export const fetchService = createAsyncThunk(
   'schedule/fetchService',
   
   async (id) => {
-    const {data} = await axios.get(`http://localhost:5000/api/service${id >=0 ? `/${id}` : ''}`)
+    const {data} = await axios.get(`${BASE_URL}/api/service${id >=0 ? `/${id}` : ''}`)
     return data
 
   }
@@ -15,7 +16,7 @@ export const fetchMaster = createAsyncThunk(
   'schedule/fetchMaster',
   
   async (id) => {
-    const {data} = await axios.get(`http://localhost:5000/api/master${id >=0 ? `/${id}` : ''}`)
+    const {data} = await axios.get(`${BASE_URL}/api/master${id >=0 ? `/${id}` : ''}`)
     return data
 
   }
@@ -24,7 +25,7 @@ export const fetchBookedDate = createAsyncThunk(
   'schedule/fetchBookedDate',
   
   async (obj) => {
-    const {data} = await axios.get(`http://localhost:5000/api/time?date=${obj.date}&masterId=${obj.masterId}`)
+    const {data} = await axios.get(`${BASE_URL}/api/time?date=${obj.date}&masterId=${obj.masterId}`)
     return data
 
   }
@@ -36,7 +37,7 @@ export const booking = createAsyncThunk(
   async (obj) => {
     // const obj = {date, hours, minutes, serviceId, masterId}
     // console.log(obj);
-    const {data} = await axios.post('http://localhost:5000/api/time', obj)
+    const {data} = await axios.post('${BASE_URL}/api/time', obj)
     return data
 
   }

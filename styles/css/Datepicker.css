@@ -20,11 +20,12 @@
   justify-content: center;
   gap: 20px;
 }
-.datepicker__btn {
+.datepicker__next-btn {
+  align-self: center;
   font-size: 16px;
   transform: translateY(2px);
 }
-.datepicker__btn._blocked {
+.datepicker__next-btn._blocked {
   color: rgb(214, 214, 214);
   pointer-events: none;
 }

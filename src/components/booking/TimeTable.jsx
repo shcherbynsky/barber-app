@@ -1,10 +1,7 @@
 import React from "react"
 import { TfiAngleLeft, TfiAngleRight } from "react-icons/tfi";
 import { useDispatch, useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
-import { setHeaderValue } from "../../redux/headerSlice"
-import { fetchBookedDate, fetchData, setChosenMaster, setChosenTime } from "../../redux/scheduleSlice"
-import DatePicker from "./DatePicker"
+import { fetchBookedDate, setChosenMaster, setChosenTime } from "../../redux/scheduleSlice"
 
 
 const TimeTable = () => {
@@ -18,7 +15,8 @@ const TimeTable = () => {
     React.useEffect(() => {
         dispatch(fetchBookedDate({ masterId: chosenMaster + 1, date: chosenDate }))
     }, [])
-
+    
+    
     // building busy hours
 
     let busyHoursArray = []
@@ -121,8 +119,8 @@ const TimeTable = () => {
     }
 
     const onClickNextBtn = () => {
-        const hoursItem = pickedTime.hours < 10 ? '0' + pickedTime.hours : pickedTime.hours
-        const minutesItem = pickedTime.minutes < 10 ? '0' + pickedTime.minutes : pickedTime.minutes
+        const hoursItem = parseInt(pickedTime.hours < 10 ? '0' + pickedTime.hours : pickedTime.hours) 
+        const minutesItem = parseInt(pickedTime.minutes < 10 ? '0' + pickedTime.minutes : pickedTime.minutes) 
         dispatch(setChosenTime({ hoursItem, minutesItem }))
     }
     const onBackClick = () => {

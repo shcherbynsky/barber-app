@@ -30,7 +30,7 @@ body {
   z-index: 10;
   background-color: #fff;
   flex: 1 1 auto;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .back-btn {
@@ -60,12 +60,13 @@ body {
 }
 
 .btn {
+  text-align: center;
+  width: 80%;
   padding: 10px 40px;
   color: #fff;
   background-color: #cacaca;
   border-radius: 20px;
   transition: 0.3s;
-  margin-left: auto;
 }
 .btn._blocked {
   background-color: #ebebeb;

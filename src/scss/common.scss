@@ -35,7 +35,7 @@ body {
     background-color: #fff;
     flex: 1 1 auto;
     // margin-bottom: 87px;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 .back-btn {
@@ -68,13 +68,14 @@ body {
 }
 
 .btn {
-
+    text-align: center;
+    width: 80%;
     padding: 10px 40px;
     color: #fff;
     background-color: #cacaca;
     border-radius: 20px;
     transition: .3s;
-    margin-left: auto;
+    // margin-left: auto;
 
     &._blocked {
         background-color: #ebebeb;

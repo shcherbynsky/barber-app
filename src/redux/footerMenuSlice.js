@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { getDataFromStorage } from "../utils/getDataFromStorage";
 
 const initialState = {
-  activeFooterMenu: getDataFromStorage('activeFooterMenu'),
+  activeFooterMenu: getDataFromStorage('activeFooterMenu') >= 0 ? getDataFromStorage('activeFooterMenu') : 2,
   // menuItems: [
   //   { logo: "<TfiCalendar />", title: "Запис", link: "/booking" },
   //   { logo: "<TfiUser />", title: "Профіль", link: "/profile" },

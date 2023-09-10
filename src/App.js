@@ -5,30 +5,24 @@ import About from "./components/about/About";
 import FooterMenu from "./components/FooterMenu";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Booking from "./components/booking/Booking";
-import ServiceChoose from "./components/booking/ServiceChoose";
 import { useSelector } from "react-redux";
-import Profile from "./components/profile/Profile";
-import Contacts from "./components/about/Contacts";
+import UserPart from "./components/UserPart";
+import AdminPart from "./components/AdminPart/AdminPart";
 
 function App() {
   const { activeFooterMenu } = useSelector((state) => state.footerMenu);
 
   return (
     <BrowserRouter>
-      <div className="App">
-        <div className="wrapper">
-          <Header />
-          <div className="main">
-            {activeFooterMenu === 0 && <Booking />}
-            {activeFooterMenu === 1 && <Profile />}
-            {activeFooterMenu === 2 && <About />}
-            {activeFooterMenu === 4 && <Contacts />}
-            
+        <div className="App">
+          <div className="wrapper">
+      <Routes>
+          <Route path='/' element={<UserPart />}/>
+          <Route path='/admin' element={<AdminPart />}/>
+          
+      </Routes>
           </div>
-          <FooterMenu />
         </div>
-      </div>
     </BrowserRouter>
   );
 }

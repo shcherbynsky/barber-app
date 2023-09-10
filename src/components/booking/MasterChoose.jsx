@@ -42,11 +42,10 @@ const MasterChoose = () => {
     }
     
     const mastersElements = masters.length > 0 ? masters.map((master, index) => {
-
         return (
             <div onClick={() => onMasterClick(index)} key={index} className={"masters__item master" + (pickedMaster === index ? " _active" : "")}>
                 <div className="master__img">
-                    <img src={'http://localhost:5000/' + master.imgUrl} alt="" />
+                    <img src={master.imgUrl} alt="" />
                 </div>
                 <div className="master__name">{master.name}</div>
             </div>
@@ -59,7 +58,7 @@ const MasterChoose = () => {
    
 
     return (
-
+        mastersElements.length === 0 ? <div className="loading"><img src="/img/preLoader.svg" /></div> :
         <div className={"masters animated-shift"}>
             <div className="masters__title">Будть ласка, оберить майстера</div>
             <div className="masters__items">
