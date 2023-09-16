@@ -32,4 +32,28 @@
   flex-direction: column;
   gap: 15px;
   margin-bottom: 20px;
+}
+.confirm__popup {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(235, 235, 235, 0.8);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.confirm-popup__body {
+  width: 60%;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  padding: 40px;
+  border-radius: 20px;
 }/*# sourceMappingURL=Confirm.css.map */

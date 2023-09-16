@@ -1,13 +1,13 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { BASE_URL } from './api'
+
 import axios from 'axios'
 
-
+const BASE_URL = "http://localhost:5000/"
 export const fetchService = createAsyncThunk(
   'schedule/fetchService',
   
   async (id) => {
-    const {data} = await axios.get(`${BASE_URL}/api/service${id >=0 ? `/${id}` : ''}`)
+    const {data} = await axios.get(`${BASE_URL}api/service${id >=0 ? `/${id}` : ''}`)
     return data
 
   }
@@ -16,7 +16,7 @@ export const fetchMaster = createAsyncThunk(
   'schedule/fetchMaster',
   
   async (id) => {
-    const {data} = await axios.get(`${BASE_URL}/api/master${id >=0 ? `/${id}` : ''}`)
+    const {data} = await axios.get(`${BASE_URL}api/master${id >=0 ? `/${id}` : ''}`)
     return data
 
   }
@@ -25,7 +25,7 @@ export const fetchBookedDate = createAsyncThunk(
   'schedule/fetchBookedDate',
   
   async (obj) => {
-    const {data} = await axios.get(`${BASE_URL}/api/time?date=${obj.date}&masterId=${obj.masterId}`)
+    const {data} = await axios.get(`${BASE_URL}api/time?date=${obj.date}&masterId=${obj.masterId}`)
     return data
 
   }
@@ -35,11 +35,8 @@ export const booking = createAsyncThunk(
   'schedule/booking',
   
   async (obj) => {
-    // const obj = {date, hours, minutes, serviceId, masterId}
-    // console.log(obj);
-    const {data} = await axios.post('${BASE_URL}/api/time', obj)
+    const {data} = await axios.post(`${BASE_URL}api/time`, obj)
     return data
-
   }
 )
 
@@ -53,18 +50,15 @@ const initialState = {
   masters: [],
   activeFooterMenu: 2,
   busyHours: [],
-  // isDateChosen: false,
-  // chosenYear: 0,
-  // chosenMonth: 0,
-  // chosenDay: 0,
   chosenDate: '',
   chosenTime: {
     hours:-1,
     minutes:-1,
   },
-  // isServiceChosen: true,
   chosenService: -1,
   chosenMaster: -1,
+  isBookingSuccessful: false,
+  isLoading: false
 }
 
 export const scheduleSlice = createSlice({
@@ -94,38 +88,34 @@ export const scheduleSlice = createSlice({
     setServices: (state, action) => {
         state.services = action.payload
       },
-    // setChosenYear: (state, action) => {
-    //   state.chosenYear = action.payload
-    // },
-    // setChosenMonth: (state, action) => {
-    //   state.chosenMonth = action.payload
-    // },
-    // setChosenDay: (state, action) => {
-    //   state.chosenDay = action.payload
-    // },
     setChosenMaster: (state, action) => {
       state.chosenMaster = action.payload
     },
-    
+    setIsBookingSuccessful: (state, action) => {
+      state.isBookingSuccessful = action.payload
+    }
   },
 
   extraReducers: {
     [fetchService.pending]: (state) => {
-  
+      state.isLoading = true
     },
     [fetchService.fulfilled]: (state, action) => {
         state.services = action.payload
+        state.isLoading = false
     },
     [fetchService.rejected]: (state) => {
         window.alert('error');
     },
 
+    // -------------------------------------------
 
     [fetchMaster.pending]: (state) => {
-  
+      state.isLoading = true
     },
     [fetchMaster.fulfilled]: (state, action) => {
         state.masters = action.payload
+        state.isLoading = false
     },
     [fetchMaster.rejected]: (state) => {
         window.alert('error');
@@ -133,21 +123,25 @@ export const scheduleSlice = createSlice({
 
 
     [booking.pending]: (state) => {
-  
+      state.isLoading = true
     },
     [booking.fulfilled]: (state, action) => {
-        console.log(action.payload);
+      state.isLoading = false  
+      state.isBookingSuccessful = true
+
     },
     [booking.rejected]: (state) => {
         window.alert('error');
     },
 
+    // ---------------------------------------------------
 
     [fetchBookedDate.pending]: (state) => {
-  
+      state.isLoading = true
     },
     [fetchBookedDate.fulfilled]: (state, action) => {
         state.busyHours = action.payload
+        state.isLoading = false
     },
     [fetchBookedDate.rejected]: (state) => {
         window.alert('error');
@@ -156,6 +150,6 @@ export const scheduleSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { setChosenDate, setChosenService, setChosenMaster, setServices, setChosenTime } = scheduleSlice.actions
+export const { setChosenDate, setChosenService, setChosenMaster, setServices, setChosenTime, setIsBookingSuccessful } = scheduleSlice.actions
 
 export default scheduleSlice.reducer

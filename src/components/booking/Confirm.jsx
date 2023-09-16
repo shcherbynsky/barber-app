@@ -2,29 +2,45 @@ import React from "react"
 import { useDispatch, useSelector } from 'react-redux'
 import { TfiAngleLeft, TfiAngleRight } from "react-icons/tfi";
 import { Link } from 'react-router-dom'
-import { booking, fetchMaster, fetchService, setServices, setChosenTime } from "../../redux/scheduleSlice"
+import { booking, fetchMaster, fetchService, setServices, setChosenTime, setIsBookingSuccessful, setChosenDate, setChosenMaster, setChosenService } from "../../redux/scheduleSlice"
+import Loader from "../Loader";
 
 
 
 const Confirm = () => {
 
-    const { chosenDate, chosenService, chosenMaster, chosenTime, masters, services } = useSelector(state => state.schedule)
+    const { chosenDate, chosenService, chosenMaster, chosenTime, masters, services, isBookingSuccessful, isLoading } = useSelector(state => state.schedule)
+    const { userInfo } = useSelector(state => state.user)
     const dispatch = useDispatch()
 
 
 
+
     const onConfirmClick = () => {
+        const time = `${chosenTime.hours}:${chosenTime.minutes}`
+        const userId = userInfo.id
         const serviceId = chosenService + 1
         const masterId = chosenMaster + 1
-        const hours = chosenTime.hours
-        const minutes = chosenTime.minutes
+        // const hours = +chosenTime.hours
+        // const minutes = +chosenTime.minutes
         const duration = services[chosenService].duration
-        // console.log({chosenDate, hours, minutes, serviceId, duration, masterId});
-        dispatch(booking({ date: chosenDate, hours, minutes, serviceId, duration, masterId }))
+        dispatch(booking({ date: chosenDate, time, serviceId, userId, duration, masterId }))
     }
 
     const onBackClick = () => {
-        dispatch(setChosenTime({ hoursItem : -1, minutesItem: -1 }))
+        dispatch(setChosenTime({ hoursItem: -1, minutesItem: -1 }))
+    }
+    
+    const onCloseBtnClick = () => {
+        dispatch(setIsBookingSuccessful(false))
+        dispatch(setChosenTime({ hoursItem: -1, minutesItem: -1 }))
+        dispatch(setChosenService(-1))
+        dispatch(setChosenDate(''))
+        dispatch(setChosenMaster(-1))    
+    }
+
+    if (isLoading) {
+        return <Loader />
     }
 
     return (
@@ -46,7 +62,17 @@ const Confirm = () => {
             </div>
             <div onClick={() => onConfirmClick()} className="confirm__btn btn">Записатись</div>
             <button onClick={() => onBackClick()} className="servicechoose__back-btn back-btn"> <span><TfiAngleLeft /></span>повернутись</button>
+            {isBookingSuccessful &&
+                <div className="confirm__popup confirm-popup animated">
+                    <div className="confirm-popup__body">
+                        <p className="confirm-popup__text">
+                            Вітаємо! Ви записани!!
+                        </p>
+                        <button onClick={onCloseBtnClick} className="confirm-popup__btn btn">Закрити</button>
+                    </div>
+                </div>}
         </div>
+
     )
 }
 

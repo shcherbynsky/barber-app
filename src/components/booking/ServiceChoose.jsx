@@ -3,6 +3,7 @@ import { TfiAngleLeft, TfiAngleRight } from "react-icons/tfi";
 import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { fetchService, setChosenDate, setChosenService } from "../../redux/scheduleSlice"
+import Loader from "../Loader";
 
 
 
@@ -11,7 +12,7 @@ const ServiceChoose = () => {
     const [isShown, setIsShown] = React.useState(false)
     const [pickedService, setPickedService] = React.useState(-1)
 
-    const {services} = useSelector(state => state.schedule)
+    const {services, isLoading} = useSelector(state => state.schedule)
     const dispatch = useDispatch()
 
     React.useEffect( () => {
@@ -45,8 +46,13 @@ const ServiceChoose = () => {
         dispatch(setChosenDate(''))
     }
 
+    if (isLoading) {
+        return <Loader />
+    }
+
+
     return (
-        serviceElements.length === 0 ? <div className="loading"><img src="/img/preLoader.svg" /></div> :
+        // serviceElements.length === 0 ? <div className="loading"><img src="/img/preLoader.svg" /></div> :
         <div className={"servicechoose animated-shift"}>
             <div className="servicechoose__title">Будть ласка, оберить послугу: <span></span></div>
             <div className="servicechoose__items">

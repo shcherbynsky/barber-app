@@ -1,1 +1,0 @@
-export const BASE_URL = "https://material-serv-4e12e02d9e3b.herokuapp.com"

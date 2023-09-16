@@ -1,0 +1,33 @@
+.mybookings {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+.mybookings__title {
+  text-align: center;
+  font-weight: 700;
+}
+.mybookings__body {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.mybookings__item {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-bottom: 10px;
+}
+.mybookings__item:not(:last-child) {
+  border-bottom: 1px solid #cacaca;
+}
+
+.item-mybookings__item {
+  display: flex;
+  gap: 20px;
+}
+.item-mybookings__title {
+  flex: 0 0 80px;
+  font-weight: 500;
+}/*# sourceMappingURL=MyBookings.css.map */

@@ -3,6 +3,7 @@ import { TfiAngleLeft, TfiAngleRight } from "react-icons/tfi";
 import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { fetchMaster, setChosenMaster, setChosenService } from "../../redux/scheduleSlice"
+import Loader from "../Loader";
 
 
 
@@ -12,7 +13,7 @@ const MasterChoose = () => {
     const [pickedMaster, setPickedMaster] = React.useState(-1)
     const [isShown, setIsShown] = React.useState(false)
 
-    const { masters } = useSelector(state => state.schedule)
+    const { masters, isLoading } = useSelector(state => state.schedule)
     const dispatch = useDispatch()
 
     React.useEffect(() => {
@@ -55,10 +56,13 @@ const MasterChoose = () => {
     }) : []
     
     
+    if (isLoading) {
+        return <Loader />
+    }
    
 
     return (
-        mastersElements.length === 0 ? <div className="loading"><img src="/img/preLoader.svg" /></div> :
+        // mastersElements.length === 0 ? <div className="loading"><img src="/img/preLoader.svg" /></div> :
         <div className={"masters animated-shift"}>
             <div className="masters__title">Будть ласка, оберить майстера</div>
             <div className="masters__items">

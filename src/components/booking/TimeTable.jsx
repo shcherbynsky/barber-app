@@ -2,6 +2,7 @@ import React from "react"
 import { TfiAngleLeft, TfiAngleRight } from "react-icons/tfi";
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchBookedDate, setChosenMaster, setChosenTime } from "../../redux/scheduleSlice"
+import Loader from "../Loader";
 
 
 const TimeTable = () => {
@@ -10,7 +11,9 @@ const TimeTable = () => {
     const [pickedTime, setPickedTime] = React.useState({hours:-1, minutes:-1})
     const [activeTimeItem, setActiveTimeItem] = React.useState(-1)
     const dispatch = useDispatch()
-    const { startHours, startMinutes, endHours, endMinutes, chosenMaster, chosenDate, busyHours, services, chosenService } = useSelector(state => state.schedule)
+    const { isLoading, startHours, startMinutes, endHours, endMinutes, chosenMaster, chosenDate, busyHours, services, chosenService } = useSelector(state => state.schedule)
+
+    
 
     React.useEffect(() => {
         dispatch(fetchBookedDate({ masterId: chosenMaster + 1, date: chosenDate }))
@@ -23,8 +26,9 @@ const TimeTable = () => {
 
     busyHours.forEach(element => {
         let iterationCount = element.duration / 15
-        let hours = element.hours
-        let minutes = element.minutes
+        const time = element.time.split(':')
+        let hours = +time[0]
+        let minutes = +time[1]
 
         for (let i = 0; i < iterationCount; i++) {
             busyHoursArray.push({ hours, minutes })
@@ -41,8 +45,9 @@ const TimeTable = () => {
     let notAvailableHoursArray = []
     busyHours.forEach(element => {
         let iterationCount = services[chosenService].duration / 15
-        let hours = element.hours
-        let minutes = element.minutes
+        const time = element.time.split(':')
+        let hours = +time[0]
+        let minutes = +time[1]
 
         for (let i = 1; i < iterationCount; i++) {
             minutes -= 15
@@ -56,23 +61,7 @@ const TimeTable = () => {
         }
     });
 
-    // building non available hours before closed time
-
-    // let hours = endHours
-    // let minutes = endMinutes
-    // let iterationCount = services[chosenService].duration / 15
-
-    // for (let i = 1; i < iterationCount; i++) {
-    //     minutes -= 15
-    //     if (minutes < 0) {
-    //         minutes = 45
-    //         hours -= 1
-    //     }
-    //     if (!notAvailableHoursArray.find(obj => obj.hours === hours && obj.minutes === minutes)) {
-    //         notAvailableHoursArray.push({hours, minutes})
-    //     }
-
-    // }
+ 
 
 
     // building timetable
@@ -85,6 +74,7 @@ const TimeTable = () => {
     let minutes = startMinutes
     let lastBookingHours = endHours
     let lastBookingMinutes = endMinutes
+
     // find last time to booking before closed
 
     for (let i = 1; i <= iterationCount; i++) {
@@ -119,8 +109,8 @@ const TimeTable = () => {
     }
 
     const onClickNextBtn = () => {
-        const hoursItem = parseInt(pickedTime.hours < 10 ? '0' + pickedTime.hours : pickedTime.hours) 
-        const minutesItem = parseInt(pickedTime.minutes < 10 ? '0' + pickedTime.minutes : pickedTime.minutes) 
+        const hoursItem = pickedTime.hours < 10 ? '0' + pickedTime.hours : pickedTime.hours
+        const minutesItem = pickedTime.minutes < 10 ? '0' + pickedTime.minutes : pickedTime.minutes
         dispatch(setChosenTime({ hoursItem, minutesItem }))
     }
     const onBackClick = () => {
@@ -137,6 +127,11 @@ const TimeTable = () => {
             </div>
         )
     })
+
+
+    if (isLoading) {
+        return <Loader />
+    }
 
 
     return (

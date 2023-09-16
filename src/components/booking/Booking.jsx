@@ -8,22 +8,54 @@ import TimeTable from "./TimeTable";
 import ServiceChoose from "./ServiceChoose";
 import Confirm from "./Confirm";
 import DatePicker2 from "./DatePicker2";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import Auth from "../Auth/Auth";
+import Loader from "../Loader";
+import { check } from "../../http/userAPI";
+import { setIsAuth, setUser } from "../../redux/userSlice";
 
 const Booking = () => {
+
+    const dispatch = useDispatch()
+
     const { chosenDate, chosenService, chosenMaster, chosenTime } = useSelector(state => state.schedule)
+    const { isAuth } = useSelector(state => state.user)
+    // const [isLoading, setIsLoading] = React.useState(true)
+
+
+    // React.useEffect(() => {
+    //     try {
+    //         check().then(data => {
+    //             if(data) {
+    //                 dispatch(setUser(data.id))
+    //             dispatch(setIsAuth(true))
+    //             }
+                
+    //         })
+    //     } catch (error) {
+    //         console.log('error = ', error);
+    //     }
+    //     setIsLoading(false)
+    // }, []);
+
+    // if (isLoading) {
+    //     return <Loader />
+    // }
+
     return (
-        <div className="booking">
+        isAuth ?
+            <div className="booking">
                 {(!chosenDate.length && chosenService < 0 && chosenMaster < 0 && chosenTime.hours < 0) && <DatePicker2 />}
                 {(chosenDate.length > 0 && chosenService < 0 && chosenMaster < 0 && chosenTime.hours < 0) && <ServiceChoose />}
                 {(chosenDate.length > 0 && chosenService >= 0 && chosenMaster < 0 && chosenTime.hours < 0) && <MasterChoose />}
                 {(chosenDate.length > 0 && chosenService >= 0 && chosenMaster >= 0 && chosenTime.hours < 0) && <TimeTable />}
                 {(chosenDate.length > 0 && chosenService >= 0 && chosenMaster >= 0 && chosenTime.hours >= 0) && <Confirm />}
-        </div >
-    ) 
+            </div >
+            : <Auth />
+    )
 }
 // const Booking = () => {
-    
+
 //     return (
 //         <div className="booking">
 //             <Routes >
