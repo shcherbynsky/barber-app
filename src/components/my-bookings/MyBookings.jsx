@@ -13,7 +13,7 @@ const MyBookings = () => {
         dispatch(fetchMyBookings(userInfo.id))
     }, [userInfo.id])
 
-    const bookingElements = bookingData.map((item, index) => {
+    const bookingElements = bookingData ? bookingData.map((item, index) => {
         return (
             <div key={index} className="mybookings__item item-mybookings">
                     <div className="item-mybookings__item">
@@ -38,7 +38,7 @@ const MyBookings = () => {
                     </div>
                 </div>
         )
-    })
+    }) : []
 
     if (!isAuth) {
         return <Auth />
