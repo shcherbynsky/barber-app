@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 
 import axios from 'axios'
 
-const BASE_URL = "http://localhost:5000/"
+const BASE_URL = "https://material-serv-4e12e02d9e3b.herokuapp.com/"
 export const fetchService = createAsyncThunk(
   'schedule/fetchService',
   
