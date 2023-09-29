@@ -1,8 +1,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-
+import { BASE_URL } from "../http";
 import axios from 'axios'
 
-const BASE_URL = "http://localhost:5000/"
+// const BASE_URL = "http://localhost:5000/"
 export const fetchService = createAsyncThunk(
   'schedule/fetchService',
   

@@ -18,4 +18,7 @@
 @import url(./scss/Auth.scss);
 @import url(./scss/Profile.scss);
 @import url(./scss/Loader.scss);
-@import url(./scss/MyBookings.scss);/*# sourceMappingURL=App.css.map */
+@import url(./scss/MyBookings.scss);
+@import url(./scss/ChangePass.scss);
+@import url(./scss/AddFeedback.scss);
+@import url(./scss/Rating.scss);/*# sourceMappingURL=App.css.map */

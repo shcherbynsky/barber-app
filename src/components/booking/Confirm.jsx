@@ -63,8 +63,8 @@ const Confirm = () => {
             <div onClick={() => onConfirmClick()} className="confirm__btn btn">Записатись</div>
             <button onClick={() => onBackClick()} className="servicechoose__back-btn back-btn"> <span><TfiAngleLeft /></span>повернутись</button>
             {isBookingSuccessful &&
-                <div className="confirm__popup confirm-popup animated">
-                    <div className="confirm-popup__body">
+                <div className="confirm__popup confirm-popup popup animated">
+                    <div className="confirm-popup__body popup__body">
                         <p className="confirm-popup__text">
                             Вітаємо! Ви записани!!
                         </p>

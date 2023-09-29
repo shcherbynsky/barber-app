@@ -1,6 +1,5 @@
 import React from 'react'
 import InputMask from "react-input-mask";
-
 import { useForm } from 'react-hook-form'
 import { login, registration } from '../../http/userAPI';
 import { useDispatch, useSelector } from 'react-redux';
@@ -52,11 +51,12 @@ const Auth = () => {
             } else {
                 userData = await registration(data.name, data.tel, data.password)
             }
-                dispatch(setUserInfo({id: userData.id, tel: userData.tel, name: userData.name}))
-                dispatch(setIsAuth(true))
-                setIsLoading(false)
+            dispatch(setUserInfo({ id: userData.id, tel: userData.tel, name: userData.name }))
+            dispatch(setIsAuth(true))
+            setIsLoading(false)
 
         } catch (error) {
+            // console.log('error = ', error);
             alert(error.response.data.message)
             setIsLoading(false)
         }
@@ -87,19 +87,7 @@ const Auth = () => {
                     }
                     <label>
                         Телефон:
-                        {/* <InputMask 
-                        mask="000/000/00/00" 
-                        maskPlaceholder=''
-                        value={phoneValue} 
-                        onChange={handlePhoneChange}
-
-                        {...register('tel', {
-                            required: "Поле обовйязкове для заповнення",
-                        })}>
-                            {(inputProps) => (
-                            <input className='auth__input input-tel' {...inputProps} type="text"/>
-                        )}
-                        </InputMask> */}
+                        
                         <input className='auth__input input-tel' type="text" value={phoneValue} onChange={e => setPhoneValue(e.target.value)}
                             {...register('tel', {
                                 required: "Поле обовйязкове для заповнення",

@@ -52,8 +52,7 @@
 .auth__action-string span {
   color: #4d76ff;
 }
-
-label {
+.auth label {
   display: flex;
   flex-direction: column;
   gap: 5px;

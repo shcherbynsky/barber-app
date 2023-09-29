@@ -1,0 +1,15 @@
+.rating__label {
+  height: 100%;
+}
+.rating__input {
+  display: none;
+}
+.rating__icon {
+  font-size: 40px;
+  cursor: pointer;
+  color: #e6e6e6;
+  transition: color 0.3s;
+}
+.rating__icon._active {
+  color: #7c7c7c;
+}/*# sourceMappingURL=Rating.css.map */

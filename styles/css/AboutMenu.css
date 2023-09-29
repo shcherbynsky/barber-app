@@ -11,7 +11,6 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
-  border: 1px solid #000;
   border-radius: 20px;
   overflow: hidden;
 }
@@ -24,6 +23,7 @@
 }
 .about-menu__btn {
   color: #000;
+  background-color: #fff;
   width: 100%;
   padding: 3px 0;
   transition: 0.3s;

@@ -6,8 +6,7 @@ import axios from 'axios'
 
 export const BASE_URL = "https://material-serv-4e12e02d9e3b.herokuapp.com/"
 const REACT_APP_API_URL = "https://material-serv-4e12e02d9e3b.herokuapp.com/"
-// export const BASE_URL = "https://barber-book-app-31a74090aa3c.herokuapp.com/"
-// const REACT_APP_API_URL = "https://barber-book-app-31a74090aa3c.herokuapp.com/"
+
 
 const $host = axios.create({
     baseURL: REACT_APP_API_URL

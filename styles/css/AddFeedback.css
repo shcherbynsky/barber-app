@@ -1,0 +1,38 @@
+.addfeedback {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(201, 201, 201, 0.103);
+}
+.addfeedback__body {
+  width: 80%;
+  background-color: white;
+  border-radius: 15px;
+  padding: 30px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.addfeedback__title {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+.addfeedback__rating {
+  margin-bottom: 20px;
+}
+.addfeedback textarea {
+  width: 100% !important;
+  height: 100px !important;
+  padding: 5px;
+  border: 1px solid #e9e9e9;
+  border-radius: 10px;
+  resize: none;
+  overflow-y: auto;
+  color: #cacaca;
+  margin-bottom: 20px;
+}/*# sourceMappingURL=AddFeedback.css.map */

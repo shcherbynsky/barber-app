@@ -9,20 +9,40 @@ const MyBookings = () => {
     const dispatch = useDispatch()
     const { userInfo, isAuth, isLoading, bookingData } = useSelector(state => state.user)
 
+    const monthItems = [
+        'Січня',
+        'Лютого',
+        'Березня',
+        'Квітня',
+        'Травня',
+        'Червня',
+        'Липня',
+        'Серпня',
+        'Вересня',
+        'Жовтня',
+        'Листопада',
+        'Грудня']
+
     React.useEffect(() => {
         dispatch(fetchMyBookings(userInfo.id))
     }, [userInfo.id])
 
     const bookingElements = bookingData ? bookingData.map((item, index) => {
+        const year = parseInt(item.date.split('-')[0]) 
+        const month = parseInt(item.date.split('-')[1])
+        const day = parseInt(item.date.split('-')[2])
+        const hours = parseInt(item.time.split(':')[0])
+        const minutes = item.time.split(':')[1]
+        
         return (
             <div key={index} className="mybookings__item item-mybookings">
                     <div className="item-mybookings__item">
                         <div className="item-mybookings__title">Дата:</div>
-                        <div className="item-mybookings__info">{item.date}</div>
+                        <div className="item-mybookings__info">{day + ' ' + monthItems[month] + ' ' + year}</div>
                     </div>
                     <div className="item-mybookings__item">
                         <div className="item-mybookings__title">Час:</div>
-                        <div className="item-mybookings__info">{item.time}</div>
+                        <div className="item-mybookings__info">{hours + ':' + minutes}</div>
                     </div>
                     <div className="item-mybookings__item">
                         <div className="item-mybookings__title">Майстер:</div>

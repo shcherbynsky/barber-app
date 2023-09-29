@@ -1,0 +1,33 @@
+
+
+.rating {
+   
+
+    &__body {
+       
+    }
+
+    
+
+    &__label {
+        
+        height: 100%;
+    }
+
+    &__input {
+        display: none;
+    }
+
+    &__icon {
+        font-size: 40px;
+        cursor: pointer;
+        color: #e6e6e6;
+        transition: color .3s;
+
+        &._active {
+            color: #7c7c7c
+        }
+    }
+
+    
+}

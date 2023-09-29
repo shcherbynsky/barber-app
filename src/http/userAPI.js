@@ -16,6 +16,7 @@ export const login = async (tel, password) => {
         sessionStorage.setItem('token', data.token)
         return jwt_decode(data.token)
 
+
 }
 export const check = async () => {
     try {
@@ -26,4 +27,10 @@ export const check = async () => {
         console.log('checkerror = ', error);
     }
     
+}
+
+export const changeUserPass = async (obj) => {
+        const { data } = await $host.patch('api/user', obj);
+        sessionStorage.setItem('token', data.token)
+        return jwt_decode(data.token)
 }

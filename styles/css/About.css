@@ -1,1 +1,9 @@
-/*# sourceMappingURL=About.css.map */
+.about {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.about__container {
+  width: 100%;
+  height: 100%;
+}/*# sourceMappingURL=About.css.map */

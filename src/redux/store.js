@@ -4,6 +4,7 @@ import footerMenuReducer from './footerMenuSlice'
 import scheduleReducer from './scheduleSlice'
 import adminReducer from './adminSlice'
 import userReducer from './userSlice'
+import feedbacReducer from './feedbackSlice'
 
 export const store = configureStore({
   reducer: {
@@ -11,6 +12,7 @@ export const store = configureStore({
     footerMenu: footerMenuReducer,
     schedule: scheduleReducer,
     admin: adminReducer,
-    user: userReducer
+    user: userReducer,
+    feedback: feedbacReducer,
   },
 })
