@@ -68,13 +68,15 @@ const MyBookings = () => {
         return <Loader />
     }
 
-    return ( bookingData &&
+    return ( bookingData.length ?
         <div className='mybookings'>
             <h3 className="mybookings__title">Мої записи</h3>
             <div className="mybookings__body">
                 {bookingElements}
             </div>
         </div>
+        :
+        <div className="mybookings__empty">У Вас поки ще немає жодного запису😉</div>
     )
 }
 
