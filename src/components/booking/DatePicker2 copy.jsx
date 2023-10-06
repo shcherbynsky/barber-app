@@ -6,7 +6,7 @@ import { TfiAngleLeft, TfiAngleRight } from "react-icons/tfi";
 import { setChosenDate } from "../../redux/scheduleSlice";
 
 const DatePicker2 = () => {
-
+    
     const dispatch = useDispatch()
 
 
@@ -49,6 +49,10 @@ const DatePicker2 = () => {
 
     }
 
+    const getRealMonth = (monthNumber)=> {
+        return monthNumber + 1
+    }
+
     const [activeDate, setActiveDate] = React.useState(-1)
     const [thisMonth, setThisMonth] = React.useState(currentDate.getMonth())
     const [thisYear, setThisYear] = React.useState(currentDate.getFullYear())
@@ -62,27 +66,10 @@ const DatePicker2 = () => {
 
     date = new Date(thisYear, thisMonth, 1)
     while (date.getMonth() === thisMonth) {
-        // console.log('date.getDate() = ', date.getDate());
-        // console.log('currentDate.getDate() = ', currentDate.getDate());
-        // console.log('date.getMonth() = ', date.getMonth());
-        // console.log('currentDate.getMonth = ', currentDate.getMonth());
-        // console.log('date.getFullYear() = ', date.getFullYear());
-        // console.log('currentDate.getFullYear() = ', currentDate.getFullYear());
-        // console.log('date.getMonth() === currentDate.getMonth = ', date.getMonth() === currentDate.getMonth());
-        thisMonthDays.push({
-            year: date.getFullYear(), 
-            month: date.getMonth(), 
-            day: date.getDate(), 
-            blocked: date.getDate() >= currentDate.getDate() &&
-                    date.getMonth() === currentDate.getMonth() &&
-                    date.getFullYear() === currentDate.getFullYear() ||
-                    date.getMonth() - currentDate.getMonth() === 1 && date.getDate() < currentDate.getDate() ||
-                    date.getMonth() === 0 && currentDate.getMonth() === 11 && date.getFullYear() - currentDate.getFullYear() === 1 && date.getDate() < currentDate.getDate()
-                    ? 0 : 1})
+        thisMonthDays.push({ year: date.getFullYear(), month: date.getMonth(), day: date.getDate() })
         date.setDate(date.getDate() + 1)
     }
 
-        
 
     // --------------prevMonthDays
 
@@ -92,7 +79,7 @@ const DatePicker2 = () => {
     const firstDayNumberOfMonth = getDayNumber()
     date.setDate(0)
     for (let i = 0; i < firstDayNumberOfMonth - 1; i++) {
-        prevMonthDays.push({ year: date.getFullYear(), month: date.getMonth(), day: date.getDate(), blocked: 1 })
+        prevMonthDays.push({ year: date.getFullYear(), month: date.getMonth(), day: date.getDate() })
         date.setDate(date.getDate() - 1)
     }
     prevMonthDays.reverse()
@@ -105,23 +92,13 @@ const DatePicker2 = () => {
     date = new Date(thisYear, thisMonth + 1, 1)
     const nextMonthDaysNumber = 7 * 6 - prevMonthDays.length - thisMonthDays.length
     for (let i = 0; i < nextMonthDaysNumber; i++) {
-
-        nextMonthDays.push({ year: date.getFullYear(), 
-            month: date.getMonth(), 
-            day: date.getDate(), 
-            blocked: 1
-                // date.getDate() >= currentDate.getDate() ||
-                // date.getMonth() - currentDate.getMonth() !== 1 || 
-                // date.getFullYear() !== currentDate.getFullYear()
-
-                // ? 1 : 0 
-            })
+        nextMonthDays.push({ year: date.getFullYear(), month: date.getMonth(), day: date.getDate() })
         date.setDate(date.getDate() + 1)
     }
 
 
 
-    
+
 
 
     const onDateClick = (year, month, day, index) => {
@@ -139,22 +116,26 @@ const DatePicker2 = () => {
 
 
     const daysElements = allDays.map((item, index) => {
+        if (item.day === 1) {
+            console.log('item.month = ', item.month);
+            console.log('currentDate.getMonth() = ', currentDate.getMonth());
+        }
+
         return (
 
             item.year ?
                 <div key={index}
                     onClick={() => onDateClick(item.year, item.month + 1, item.day, index)}
                     className={(
-                       item.blocked
-                        // item.month < currentDate.getMonth()
-                        // || item.month < thisMonth
-                        // || (item.year < new Date().getFullYear())
-                        // || (item.year > new Date().getFullYear())
-                        // || (item.month <= currentDate.getMonth() && item.day < currentDate.getDate())
-                        // || item.month > currentDate.getMonth() && item.day > currentDate.getDate() - 1
-                        // || item.month > thisMonth
-                        ? "datepicker__item _blocked"
-                        :
+                        item.month < currentDate.getMonth()
+                            || item.month < thisMonth
+                            || (item.year < new Date().getFullYear())
+                            || (item.year > new Date().getFullYear())
+                            || (item.month <= currentDate.getMonth() && item.day < currentDate.getDate())
+                            || item.month > currentDate.getMonth() && item.day > currentDate.getDate() - 1
+                            || item.month > thisMonth
+                            ? "datepicker__item _blocked"
+                            :
                             (
                                 "datepicker__item "
                                 + (item.month === currentDate.getMonth() && currentDate.getDate() === item.day ? "_this-day " : "")

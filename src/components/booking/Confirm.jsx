@@ -15,7 +15,6 @@ const Confirm = () => {
 
 
 
-
     const onConfirmClick = () => {
         const time = `${chosenTime.hours}:${chosenTime.minutes}`
         const userId = userInfo.id

@@ -33,11 +33,6 @@
   margin-bottom: 5px;
   padding: 5px;
 }
-.auth__input-err {
-  color: #ff3a3a;
-  font-size: 10px;
-  height: 10px;
-}
 .auth__btn {
   padding: 10px;
   border-radius: 10px;
