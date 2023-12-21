@@ -3,8 +3,8 @@ import axios from 'axios'
 // export const BASE_URL = "http://localhost:5000/"
 // const REACT_APP_API_URL = "http://localhost:5000/"
 
-export const BASE_URL = "https://material-serv-4e12e02d9e3b.herokuapp.com/"
-const REACT_APP_API_URL = "https://material-serv-4e12e02d9e3b.herokuapp.com/"
+export const BASE_URL = "https://barber-server.vercel.app/"
+const REACT_APP_API_URL = "https://barber-server.vercel.app/"
 
 
 const $host = axios.create({
