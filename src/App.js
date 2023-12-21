@@ -17,6 +17,13 @@ import { setIsAuth, setUserInfo } from "./redux/userSlice";
 function App() {
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = React.useState(true);
+
+
+  React.useEffect(() => {
+    if (window.screen.width > 767.98) {
+      window.alert(`Додаток було розроблено для мобільних пристроїв! На великих екранах він може відображатись некоректно. Вибачте за незручності!`)
+    }
+  }, [])
   
   React.useEffect(() => {
     try {
@@ -49,24 +56,6 @@ function App() {
     </BrowserRouter>
   );
 }
-// function App() {
-//   return (
-//     <div className="App">
-//       <div className="wrapper">
-//         <BrowserRouter>
-//           <Header />
-//           <div className="main">
-//             <Routes >
-//               <Route path="/about" element={<About />}/>
-//               <Route path="/booking/*" element={<Booking />}/>
 
-//             </Routes>
-//           </div>
-//           <FooterMenu />
-//         </BrowserRouter>
-//       </div>
-//     </div>
-//   );
-// }
 
 export default App;
